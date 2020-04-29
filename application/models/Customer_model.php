@@ -16,7 +16,11 @@ class Customer_model extends CI_Model
 
   public function insert($post)
   {
-    return $this->db->insert($post);
+    return $this->db->insert($this->_table, array(
+      'nama_customer' => $post['nama_customer'],
+      'alamat_customer' => $post['address_customer'],
+      'telp_customer' => $post['telp_customer']
+    ));
   }
 
   public function delete($id)

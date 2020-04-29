@@ -23,11 +23,20 @@ class Customer extends CI_Controller
   // for AJAX
   public function get_customer()
   {
-    $result = $this->customer_model->get();
+    $get = $this->input->get();
+    if (isset($get['id_customer'])) {
+      $result = $this->customer_model->get($get['id_customer']);
+    } else {
+      $result = $this->customer_model->get();
+    }
     echo json_encode($result);
   }
   public function add_customer()
   {
+    $post = $this->input->post();
+    $this->customer_model->insert($post);
+    $result = $this->db->affected_rows();
+    echo json_encode($result);
   }
 
   public function delete_customer()
@@ -54,5 +63,10 @@ class Customer extends CI_Controller
       show_404();
     } else if (true) {
     }
+  }
+
+  public function test()
+  {
+    $this->template->load('templates/template_dashboard', 'v_test');
   }
 }
