@@ -347,6 +347,10 @@
     });
   </script>
 
+  <?php if (isset($scripts)) {
+    echo $scripts;
+  } ?>
+
 </body>
 
 </html>

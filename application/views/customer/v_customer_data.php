@@ -11,7 +11,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-sm table-bordered" id="dataCustomer" width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>No.</th>
@@ -32,65 +32,83 @@
             <th>Action</th>
           </tr>
         </tfoot>
-        <tbody>
-          <?php
-          $index = 1;
-          foreach ($customers as $customer) : ?>
-            <tr>
-              <td><?= $index++ ?></td>
-              <td><?= $customer->nama_customer; ?></td>
-              <td><?= $customer->alamat_customer; ?></td>
-              <td><?= $customer->telp_customer; ?></td>
-              <td class="text-table-hide"><?= $user->id_pengguna; ?></td>
-              <td class="text-center">
-                <a class="btn btn-primary btn-circle btn-sm mx-1"><i class="fas fa-info text-white"></i></a>
-                <a href="<?= site_url('user/edit/' . $customer->id_customer); ?>" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit text-white"></i></a>
-                <a data-toggle="modal" data-target="#delete<?= $customer->id_customer ?>" class="btn btn-danger btn-circle btn-sm mx-1"><i class="fas fa-trash text-white"></i></a>
-              </td>
-            </tr>
-          <?php endforeach; ?>
+        <tbody id="data_customer">
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- Insert Modal -->
-<div class="modal fade" id="addCustomer" tabindex="-1" role="dialog" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+<!-- Modal Delete Customer -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addCustomerModalLabel">Tambah Pelanggan</h5>
+        <h5 class="modal-title" id="deleteUserModalLabel">Yakin ingin menghapus ?</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
       <div class="modal-footer">
+        <form>
+          <input type="hidden" name="id_customer" id="id_customer" value="">
+        </form>
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-        <!-- <a class="btn btn-primary" href="<?php echo site_url("customer/delete/" . $customer->id_customer); ?>">Konfirmasi</a> -->
+        <button id="btn_delete_customer" class="btn btn-danger" type="button" data-dismiss="modal">Konfirmasi</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Delete Modal -->
-<?php foreach ($customers as $customer) : ?>
-  <div class="modal fade" id="delete<?= $customer->id_customer ?>" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteUserModalLabel">Yakin ingin menghapus ?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-          <a class="btn btn-primary" href="<?php echo site_url("customer/delete/" . $customer->id_customer); ?>">Konfirmasi</a>
+<!-- Modal Add Customer
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-4 py-5 bg-primary text-white text-center ">
+      <div class=" ">
+        <div class="card-body">
+          <img src="http://www.ansonika.com/mavia/img/registration_bg.svg" style="width:30%">
+          <h2 class="py-3">Anggota Baru</h2>
+          <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto patrioque an per, lucilius pertinacia eu vel.
+
+          </p>
         </div>
       </div>
     </div>
+    <div class="col-md-8 py-5 border">
+      <h4 class="pb-4">Isi form berikut ini</h4>
+      <form id="form-add" action="" method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">No. Anggota</span>
+              </div>
+              <label for=no_user></label>
+              <input type="text" value="" class="form-control bg-light" name="no_user" id="no_user" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for=fullname>Nama Lengkap*</label>
+            <input type="text" class="form-control" value="" name="fullname" id="fullname">
+           
+
+          </div>
+          <div class="form-group col-md-6">
+            <label for=username>Username*</label>
+            <input type="text" class="form-control" value="" name="username" id="username">
+            
+          </div>
+        </div>
+        <div class="form-row">
+          <button type="submit" id="btn-submit-form" class="btn btn-success"><i class="fas fa-paper-plane fa-sm text-white-50"></i> Submit</button>
+        </div>
+        <script>
+
+        </script>
+      </form>
+    </div>
   </div>
-<?php endforeach; ?>
+</div> -->
