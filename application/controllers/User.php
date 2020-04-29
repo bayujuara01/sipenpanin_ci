@@ -13,12 +13,16 @@ class User extends CI_Controller
 
   public function index()
   {
+    $this->authentication->checkRole(ROLE_ADMIN);
+
     $data['users'] = $this->user_model->get();
     $this->template->load('templates/template_dashboard', 'user/v_user_data', $data);
   }
 
   public function add($type = null)
   {
+    $this->authentication->checkRole(ROLE_ADMIN);
+
     if ($type != null) {
       if ($type == TYPE_USER_NEW) {
         $post = $this->input->post();
@@ -78,6 +82,11 @@ class User extends CI_Controller
     //   $this->session->set_flashdata('user_not_found', $data);
     //   redirect(site_url('user'));
     // }
+
+    if (!isset($id)) {
+      redirect(site_url('user'));
+      return;
+    }
 
     $post = $this->input->post();
 

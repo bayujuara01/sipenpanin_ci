@@ -2,3 +2,8 @@
 *==BUG===*
 *========*
 1. 'create at' time, mundur 1 hari.
+
+*========================*
+*==DESAIN BELUM TUNTAS===*
+*========================*
+1. v_user_add -> form_validation

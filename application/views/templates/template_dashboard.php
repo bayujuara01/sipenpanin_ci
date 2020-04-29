@@ -64,21 +64,33 @@
         Penjualan
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Nav Item - Penjualan -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct" aria-expanded="true" aria-controls="collapseProduct">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
+          <span>Produk</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <a class="collapse-item" href="<?= site_url('category'); ?>">Daftar Produk</a>
+            <a class="collapse-item" href="cards.html">Kategori</a>
           </div>
         </div>
       </li>
 
+      <!-- Nav Item - Customer -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCustomer" aria-expanded="true" aria-controls="collapseCustomer">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Pelanggan</span>
+        </a>
+        <div id="collapseCustomer" class="collapse" aria-labelledby="headingCustomer" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="<?= site_url('customer'); ?>">Data Pelanggan</a>
+            <a class="collapse-item" href="cards.html">-</a>
+          </div>
+        </div>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider my-3" />
       <!-- Divider -->
@@ -241,7 +253,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $this->session->userdata('name_user'); ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $this->authentication->userLogin()->nama_pengguna ?></span>
                 <img class="img-profile rounded-circle" src="https://yt3.ggpht.com/a-/AOh14GjlXJDZdsMJoBbnFLmuJA_0hn5LaJxhDqB9QXzVfw=s88-c-k-c0xffffffff-no-rj-mo">
               </a>
               <!-- Dropdown - User Information -->

@@ -91,3 +91,7 @@ defined('EXIT__AUTO_MAX')      or define('EXIT__AUTO_MAX', 125); // highest auto
 */
 define('TYPE_USER_NEW', 'new');
 define('TYPE_USER_UPDATE', 'update');
+
+define('ROLE_ADMIN', 1);
+define('ROLE_SELLER', 2);
+define('ROLE_MEMBER', 3);
