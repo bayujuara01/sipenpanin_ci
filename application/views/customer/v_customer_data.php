@@ -1,7 +1,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between">
   <h1 class="h3 mb-4 text-gray-800">Data Pelanggan</h1>
-  <a href="#add" data-toggle="modal" data-target="#addModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-user-plus fa-sm text-white-50"></i> Tambah Pelanggan</a>
+  <a href="#add" data-toggle="modal" id="btn_show_add" data-target="#addModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-user-plus fa-sm text-white-50"></i> Tambah Pelanggan</a>
 </div>
 
 <!-- DataTales Example -->
@@ -87,7 +87,6 @@
                   </div>
                   <label for=no_user></label>
                   <input type="number" value="" class="form-control bg-light" name="telp_customer" id="telp_customer">
-                  <input type="hidden" value="" name="id_customer_edit" id="id_customer_edit">
                 </div>
               </div>
               <div class="form-group col-md">
@@ -100,9 +99,57 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-          <button id="btn_add_customer" class="btn btn-success" type="button" data-dismiss="modal">Submit</button>
+          <button class="btn btn-secondary" id="btn_cancel" type="button" data-dismiss="modal">Batal</button>
+          <button id="btn_add_customer" class="btn btn-success" name="add" type="button" data-dismiss="modal">Submit</button>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal Edit Customer -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editCustomerModalLabel">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editCustomerModalLabel">Edit Pelanggan</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md">
+            <form id="form-edit" action="" method="POST">
+              <div class="form-group col-md">
+                <label for="name_edit_customer">Nama</label>
+                <input type="text" class="form-control" name="name_edit_customer" id="name_edit_customer">
+              </div>
+              <div class="form-group col-md">
+                <label for="telp_edit_customer">No. Telepon</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">+62</span>
+                  </div>
+                  <label for=telp_edit_customer></label>
+                  <input type="number" value="" class="form-control bg-light" name="telp_edit_customer" id="telp_edit_customer">
+                  <input type="hidden" value="" name="id_customer_edit" id="id_customer_edit">
+                </div>
+              </div>
+              <div class="form-group col-md">
+                <label for=address_edit_customer>Alamat</label>
+                <div class="form-group">
+                  <textarea class="form-control" type="text" name="address_edit_customer" id="address_edit_customer" rows="3"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="btn_cancel" type="button" data-dismiss="modal">Batal</button>
+          <button id="btn_edit_customer" class="btn btn-success" name="add" type="button" data-dismiss="modal">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

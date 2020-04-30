@@ -4,6 +4,13 @@
     $('#dataCustomer').dataTable();
     get_customer();
 
+    // Clear modal input
+    $('#btn_cancel').click(function() {
+      $('[name="name_customer"]').val('');
+      $('[name="telp_customer"]').val('');
+      $('[name="address_customer"]').val('');
+    });
+
     // Get Modal Delete
     $('#data_customer').on('click', '#item_delete_customer', function(e) {
       let id = $(this).attr('data');
@@ -16,9 +23,8 @@
     $('#data_customer').on('click', '#item_edit_customer', function(e) {
       let id = e.currentTarget.attributes.data.value;
       console.log(id);
-      $('#addModal').modal('show');
-      $('#addCustomerModalLabel').text('Pembaharuan Data Pelanggan');
-
+      $('#editModal').modal('show');
+      $('#editCustomerModalLabel').text('Pembaharuan Data Pelanggan');
 
       $.ajax({
         type: 'GET',
@@ -29,20 +35,19 @@
           id_customer: id
         },
         success: function(data) {
+          let nameCustomer = $('[name="name_edit_customer"]');
+          let telpCustomer = $('[name="telp_edit_customer"]');
+          let addressCustomer = $('[name="address_edit_customer"]');
+          let idCustomer = $('[name="id_customer_edit"]');
           if (data) {
-            let nameCustomer = $('[name="name_customer"]');
-            let telpCustomer = $('[name="telp_customer"]');
-            let addressCustomer = $('[name="address_customer"]');
+
             console.log(addressCustomer)
 
             $('[name="id_customer_edit"').val(id);
             nameCustomer.val(data.nama_customer);
             telpCustomer.val(data.telp_customer);
             addressCustomer.val(data.alamat_customer);
-
-            nameCustomer.val('');
-            telpCustomer.val('');
-            addressCustomer.val('');
+            idCustomer.val(data.id_customer);
           } else {
             alert('Data tidak ditemukan');
           }
@@ -68,10 +73,47 @@
 
     });
 
+    // Update Process button
+    $('#btn_edit_customer').on('click', function(e) {
+      let nameCustomer = $('[name="name_edit_customer"]');
+      let telpCustomer = $('[name="telp_edit_customer"]');
+      let addressCustomer = $('[name="address_edit_customer"]');
+      let idCustomer = $('[name="id_customer_edit"');
+
+      let dataCustomer = {
+        id_customer: idCustomer.val(),
+        nama_customer: nameCustomer.val(),
+        telp_customer: telpCustomer.val(),
+        address_customer: addressCustomer.val()
+      }
+
+      if (dataCustomer.nama_customer != '' || dataCustomer.telp_customer != '' || dataCustomer.address_customer != '') {
+        $.ajax({
+          type: 'POST',
+          url: '<?php echo site_url('customer/edit_customer'); ?>',
+          async: true,
+          dataType: 'JSON',
+          data: dataCustomer,
+          success: function(data) {
+            if (data > 0) {
+              get_customer();
+            } else {
+              alert('Terdapat kesalahan');
+            }
+            nameCustomer.val('');
+            telpCustomer.val('');
+            addressCustomer.val('');
+          }
+        });
+      } else {
+        alert('Mohon isi data dengan lengkap');
+      }
+
+    });
+
     // Add Process button
     $('#btn_add_customer').on('click', function(e) {
       console.log('ok')
-
 
       let nameCustomer = $('[name="name_customer"]');
       let telpCustomer = $('[name="telp_customer"]');
@@ -83,24 +125,28 @@
         address_customer: addressCustomer.val()
       }
 
-      nameCustomer.val('');
-      telpCustomer.val('');
-      addressCustomer.val('');
-
-      $.ajax({
-        type: 'POST',
-        url: '<?php echo site_url('customer/add_customer'); ?>',
-        async: true,
-        dataType: 'JSON',
-        data: dataCustomer,
-        success: function(data) {
-          if (data > 0) {
-            get_customer();
-          } else {
-            alert('Terdapat kesalahan');
+      if (dataCustomer.nama_customer != '' || dataCustomer.telp_customer != '' || dataCustomer.address_customer != '') {
+        $.ajax({
+          type: 'POST',
+          url: '<?php echo site_url('customer/add_customer'); ?>',
+          async: true,
+          dataType: 'JSON',
+          data: dataCustomer,
+          success: function(data) {
+            if (data > 0) {
+              get_customer();
+            } else {
+              alert('Terdapat kesalahan');
+            }
+            nameCustomer.val('');
+            telpCustomer.val('');
+            addressCustomer.val('');
           }
-        }
-      })
+        });
+      } else {
+        alert('Mohon isi data dengan lengkap');
+      }
+
     });
 
 

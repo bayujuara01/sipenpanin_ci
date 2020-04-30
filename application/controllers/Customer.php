@@ -15,7 +15,6 @@ class Customer extends CI_Controller
   {
     $this->authentication->checkRole(ROLE_SELLER);
 
-    $data['customers'] = $this->customer_model->get();
     $data['scripts'] = $this->load->view('customer/script_customer', [], TRUE);
     $this->template->load('templates/template_dashboard', 'customer/v_customer_data', $data);
   }
@@ -39,6 +38,14 @@ class Customer extends CI_Controller
     echo json_encode($result);
   }
 
+  public function edit_customer()
+  {
+    $post = $this->input->post();
+    $this->customer_model->update($post);
+    $result = $this->db->affected_rows();
+    echo json_encode($result);
+  }
+
   public function delete_customer()
   {
     $post = $this->input->post();
@@ -54,14 +61,6 @@ class Customer extends CI_Controller
       // set flash data delete failed
     } else if ($this->customer_model->delete($id)) {
       redirect(site_url('customer'));
-    }
-  }
-
-  public function edit($id = null)
-  {
-    if (!isset($id)) {
-      show_404();
-    } else if (true) {
     }
   }
 

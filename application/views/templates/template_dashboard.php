@@ -72,8 +72,8 @@
         </a>
         <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="<?= site_url('category'); ?>">Daftar Produk</a>
-            <a class="collapse-item" href="cards.html">Kategori</a>
+            <a class="collapse-item" href="cards.html">Daftar Produk</a>
+            <a class="collapse-item" href="<?= site_url('category'); ?>">Kategori</a>
           </div>
         </div>
       </li>

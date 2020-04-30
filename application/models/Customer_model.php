@@ -30,6 +30,12 @@ class Customer_model extends CI_Model
 
   public function update($post)
   {
-    return $this->db->update($this->_table, $post, array('id_customer' => $post['id_customer']));
+    $data = array(
+      'nama_customer' => $post['nama_customer'],
+      'alamat_customer' => $post['address_customer'],
+      'telp_customer' => $post['telp_customer']
+    );
+
+    return $this->db->update($this->_table, $data, array('id_customer' => $post['id_customer']));
   }
 }
