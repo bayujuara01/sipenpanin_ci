@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-8 py-5 border">
         <h4 class="pb-4">Isi form berikut ini</h4>
-        <form id="form-add" action="<?= site_url('user/add/new'); ?>" method="POST">
+        <form id="form-add" action="<?= site_url('user/add/new'); ?>" enctype="multipart/form-data" method="POST">
           <div class="form-row">
             <div class="form-group col-md-6">
               <div class="input-group">
@@ -97,7 +97,15 @@
             <div class="form-group col-md-6">
               <label for=no_telp>No. Telepon*</label>
               <input type="number" value="<?= set_value('no_telp') ?>" class="form-control" name="no_telp" id="no_telp">
-              <?= form_error('no_telp', "<small class=\"form-text text-danger\">*", "</small>") ?>
+              <?= form_error('no_telp', "<div class=\"invalid-feedback\">*", "</div>") ?>
+
+            </div>
+            <div class="form-group col-md-6">
+              <label for="customFile">Foto Profil</label>
+              <div id="customFile" class="custom-file">
+                <input type="file" class="form-control" name="profile_user" id="profile_user">
+                <!-- <label class="custom-file-label" for="profile_user">Choose file...</label> -->
+              </div>
 
             </div>
           </div>

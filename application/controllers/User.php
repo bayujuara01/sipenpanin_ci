@@ -23,16 +23,67 @@ class User extends CI_Controller
   {
     $this->authentication->checkRole(ROLE_ADMIN);
 
+    $config['upload_path'] = './assets/img/profiles/';
+    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+    $config['max_size']     = '20480';
+    $config['file_name'] = 'img-' . (string) (round(microtime(true) * 100));
+
+    $this->load->library('upload', $config);
+
     if ($type != null) {
       if ($type == TYPE_USER_NEW) {
         $post = $this->input->post();
         if ($post) {
-          if ($this->validate(TYPE_USER_NEW)) {
-            $this->user_model->add($post);
-            if ($this->db->affected_rows() > 0) {
-              echo "<script> alert('Data berhasil disimpan'); </script>";
-              echo "<script> window.location.replace('" . site_url('user') . "');</script>";
+
+          if (true) {
+
+            if (@$_FILES['profile_user']['name'] != null) {
+              if ($this->upload->do_upload('profile_user')) {
+                $post['profile_user'] = $this->upload->data('file_name');
+                $this->user_model->add($post);
+                if ($this->db->affected_rows() > 0) {
+                  echo "<script> alert('Data berhasil disimpan'); </script>";
+                  echo "<script> window.location.replace('" . site_url('user') . "');</script>";
+                } else {
+                  echo "<script> alert('Data terdapat kesalahan '); </script>";
+                  echo "<script> window.location.replace('" . site_url('user') . "');</script>";
+                }
+              } else {
+                echo "<script> alert('Kesalahan Upload Gambar'); </script>";
+              }
+            } else {
+              $post['profile_user'] = null;
+              $this->user_model->add($post);
+              if ($this->db->affected_rows() > 0) {
+                echo "<script> alert('Data berhasil disimpan'); </script>";
+                echo "<script> window.location.replace('" . site_url('user') . "');</script>";
+              } else {
+                echo "<script> alert('Data terdapat kesalahan '); </script>";
+                echo "<script> window.location.replace('" . site_url('user/add') . "');</script>";
+              }
             }
+
+            // if ($this->upload->do_upload('profile_user')) {
+            //   // $post['profile_user'] = $this->upload->data('file_name');
+            //   $this->user_model->add($post);
+            //   if ($this->db->affected_rows() > 0) {
+            //     echo "<script> alert('Data berhasil disimpan'); </script>";
+            //     echo "<script> window.location.replace('" . site_url('user') . "');</script>";
+            //   } else {
+            //     echo "<script> alert('Data terdapat kesalahan '); </script>";
+            //     echo "<script> window.location.replace('" . site_url('user') . "');</script>";
+            //   }
+            // } else {
+            //   // $post['profile_user'] = null;
+            //   // $this->user_model->add($post);
+            //   // if ($this->db->affected_rows() > 0) {
+            //   //   echo "<script> alert('Data berhasil disimpan'); </script>";
+            //   //   echo "<script> window.location.replace('" . site_url('user') . "');</script>";
+            //   // } else {
+            //   echo "<script> alert('Data terdapat kesalahan upload " . $this->upload->display_errors() . " '); </script>";
+            //   echo "<script> window.location.replace('" . site_url('user/add') . "');</script>";
+            //   // }
+            // }
           };
         } else {
           redirect(site_url('user/add'));
@@ -132,7 +183,7 @@ class User extends CI_Controller
   {
     $this->form_validation->set_rules('fullname', 'Nama Lengkap', array('required'));
     $this->form_validation->set_rules('username', 'Username', array('required', 'min_length[8]', 'is_unique[tb_pengguna.user_pengguna]'));
-    $this->form_validation->set_rules('password', 'Password', array('min_length[6]'));
+    $this->form_validation->set_rules('password', 'Password', array('required', 'min_length[6]'));
     $this->form_validation->set_rules('password_confirm', 'Konfirmasi Password', array('matches[password]'));
     $this->form_validation->set_rules('birth_date', 'Tanggal Lahir', array('required'));
     $this->form_validation->set_rules('birth_province', 'Tempat Lahir', array('required'));

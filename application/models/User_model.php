@@ -5,7 +5,6 @@ class User_model extends CI_Model
 {
   private $_table = "tb_pengguna";
 
-
   public function login()
   {
     $post = $this->input->post();
@@ -59,6 +58,7 @@ class User_model extends CI_Model
       'jk_pengguna' => $post['sex_user'],
       'tmp_lahir' => $post['birth_city'],
       'no_tlp' => $post['no_telp'],
+      'img_pengguna' => $post['profile_user'],
       'role_id' => $post['role_user'],
       'create_at' => date("Y-m-d H:i:s")
     ));

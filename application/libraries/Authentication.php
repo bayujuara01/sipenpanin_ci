@@ -4,13 +4,12 @@ class Authentication
 {
   protected $ci;
 
-
-  function __construct()
+  public function __construct()
   {
     $this->ci = &get_instance();
   }
 
-  function userLogin()
+  public function userLogin()
   {
     $this->ci->load->model('user_model');
     $user_id = $this->ci->session->userdata('id_user');
@@ -18,7 +17,7 @@ class Authentication
     return $user_data;
   }
 
-  function checkRole($type)
+  public function checkRole($type)
   {
     switch ($type) {
       case ROLE_ADMIN:

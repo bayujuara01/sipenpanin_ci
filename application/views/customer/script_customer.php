@@ -180,8 +180,5 @@
         }
       });
     }
-
-    // Function add data
-
   });
 </script>

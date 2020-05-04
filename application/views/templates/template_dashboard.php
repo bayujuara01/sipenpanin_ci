@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>SIPENPANIN - MUHIKU</title>
 
   <!-- Custom fonts for this template-->
   <link href="<?php echo base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -50,7 +50,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="<?= site_url('transaction'); ?>" class="nav-link">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Transaksi</span>
         </a>
@@ -72,7 +72,7 @@
         </a>
         <div id="collapseProduct" class="collapse" aria-labelledby="headingProduct" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="cards.html">Daftar Produk</a>
+            <a class="collapse-item" href="<?= site_url('product'); ?>">Daftar Produk</a>
             <a class="collapse-item" href="<?= site_url('category'); ?>">Kategori</a>
           </div>
         </div>
