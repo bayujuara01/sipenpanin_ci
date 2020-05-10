@@ -1,8 +1,32 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    $('#dataCategory').dataTable();
-    get_category();
+    // get_category();
+    // Category DataTable with refresh ajax
+    $('#dataCategory').DataTable({
+      ajax: {
+        url: '<?php echo base_url('category/get_category'); ?>',
+        dataSrc: ''
+      },
+      columns: [{
+          data: null,
+          render: function(data, type, full, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
+        }, {
+          data: "nama_kategori",
+        },
+        {
+          sortable: false,
+          render: function(data, type, full, meta) {
+            return `
+            <a data-toggle="modal" id="item_edit_category" data="${full.id_kategori}" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit text-white"></i></a>
+            <a data-toggle="modal" id="item_delete_category" data="${full.id_kategori}" class="btn btn-danger btn-circle btn-sm mx-1"><i class="fas fa-trash text-white"></i></a>
+            `
+          }
+        }
+      ]
+    });
 
     // Clear modal input
     $('#btn_cancel').click(function() {
@@ -58,7 +82,8 @@
         },
         success: function(data) {
           // console.log(data);
-          get_category();
+          //get_category();
+          $('#dataCategory').DataTable().ajax.reload();
         }
       });
 
@@ -85,7 +110,8 @@
           data: dataCategory,
           success: function(data) {
             if (data > 0) {
-              get_category();
+              // get_category();
+              $('#dataCategory').DataTable().ajax.reload();
             } else {
               alert('Terdapat kesalahan');
             }
@@ -116,7 +142,8 @@
           data: dataCategory,
           success: function(data) {
             if (data > 0) {
-              get_category();
+              // get_category();
+              $('#dataCategory').DataTable().ajax.reload();
             } else {
               alert('Terdapat kesalahan');
             }
@@ -128,38 +155,32 @@
       }
 
     });
+  });
 
-
-
-    // Function Category get data
-    function get_category() {
-      $.ajax({
-        type: 'GET',
-        url: '<?php echo base_url('category/get_category'); ?>',
-        async: true,
-        dataType: 'json',
-        success: function(data) {
-          let html = '';
-          console.log(data);
-          for (let i = 0; i < data.length; i++) {
-            html += `
+  // Function Category get data
+  function get_category() {
+    $.ajax({
+      type: 'GET',
+      url: '<?php echo base_url('category/get_category'); ?>',
+      async: true,
+      dataType: 'json',
+      success: function(data) {
+        let html = '';
+        console.log(data);
+        for (let i = 0; i < data.length; i++) {
+          html += `
             <tr>
               <td>${i+1}</td>
               <td>${data[i].nama_kategori}</td>
-              <td class="text-table-hide">${data[i].id_kategori}</td>
               <td class="text-center">
               <a data-toggle="modal" id="item_edit_category" data="${data[i].id_kategori}" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-edit text-white"></i></a>
               <a data-toggle="modal" id="item_delete_category" data="${data[i].id_kategori}" class="btn btn-danger btn-circle btn-sm mx-1"><i class="fas fa-trash text-white"></i></a>
               </td>
             <tr>
             `
-          }
-          document.getElementById('data_category').innerHTML = html;
         }
-      });
-    }
-
-    // Function add data
-
-  });
+        document.getElementById('data_category').innerHTML = html;
+      }
+    });
+  }
 </script>

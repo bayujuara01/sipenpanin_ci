@@ -1,7 +1,8 @@
 *========*
 *==BUG===*
 *========*
-1. 'create at' time, mundur 1 hari.
+1. 'create at' -> tb_pengguna : time, mundur 1 hari.
+2. dataTables Bug searching, sorting not work in (product, customer) : solution on category, unit
 
 *========================*
 *==DESAIN BELUM TUNTAS===*

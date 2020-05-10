@@ -23,10 +23,22 @@ class Product extends CI_Controller
     $get = $this->input->get();
     if (isset($get['id_product'])) {
       $result = $this->product_model->get($get['id_product']);
+    } else if (isset($get['code_product'])) {
+      $result = $this->product_model->getByCode($get['code_product']);
     } else {
       $result = $this->product_model->get();
     }
     echo json_encode($result);
+  }
+
+  public function add_product()
+  {
+    $post = $this->input->post();
+    $this->product_model->insert($post);
+
+    $result = $this->db->affected_rows();
+
+    return json_encode($result);
   }
 
   public function edit_product()
@@ -36,6 +48,24 @@ class Product extends CI_Controller
     $result = $this->db->affected_rows();
 
     // header("HTTP/1.1 200 OK", true, 200);
+    echo json_encode($result);
+  }
+
+  public function delete_product()
+  {
+    $post = $this->input->post();
+    $this->product_model->delete($post['id_product']);
+
+    $result = $this->db->affected_rows();
+
+    echo json_encode($result);
+  }
+
+  public function check_stock()
+  {
+    $post = $this->input->post();
+    $result = $this->product_model->checkStock($post['cart_products']);
+
     echo json_encode($result);
   }
 }

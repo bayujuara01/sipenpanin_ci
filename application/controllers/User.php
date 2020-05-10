@@ -116,7 +116,7 @@ class User extends CI_Controller
   {
     if (!isset($id)) {
       show_404();
-    } else  if ($this->user_model->delete($id)) {
+    } else if ($this->user_model->delete($id)) {
       redirect('user');
     }
   }

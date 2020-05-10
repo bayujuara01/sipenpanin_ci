@@ -14,17 +14,15 @@
       <table class="table table-sm table-bordered" id="dataCategory" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>No.</th>
-            <th>kategori</th>
-            <th class="text-table-hide"></th>
+            <th>#</th>
+            <th>Kategori</th>
             <th>Action</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th>No.</th>
-            <th>kategori</th>
-            <th class="text-table-hide"></th>
+            <th>#</th>
+            <th>Kategori</th>
             <th>Action</th>
           </tr>
         </tfoot>

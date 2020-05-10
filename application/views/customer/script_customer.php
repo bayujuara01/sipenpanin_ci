@@ -1,7 +1,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    $('#dataCustomer').dataTable();
+    $('#dataCustomer').DataTable();
     get_customer();
 
     // Clear modal input

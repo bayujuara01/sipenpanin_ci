@@ -4,7 +4,6 @@
   <a href="#add" data-toggle="modal" id="btn_show_add" data-target="#addModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-user-plus fa-sm text-white-50"></i> Tambah Unit</a>
 </div>
 
-<!-- DataTales Example -->
 <div class="card col-md-8 shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Daftar Unit</h6>
@@ -14,19 +13,17 @@
       <table class="table table-sm table-bordered" id="dataUnit" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>No.</th>
+            <th>#</th>
             <th>Nama Unit</th>
             <th>Singkatan</th>
-            <th class="text-table-hide"></th>
             <th>Action</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th>No.</th>
+            <th>#</th>
             <th>Nama Unit</th>
             <th>Singkatan</th>
-            <th class="text-table-hide"></th>
             <th>Action</th>
           </tr>
         </tfoot>
@@ -42,7 +39,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteUnitModalLabel">Yakin ingin menghapus kategori ini ?</h5>
+        <h5 class="modal-title" id="deleteUnitModalLabel">Yakin ingin menghapus unit ini ?</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -64,7 +61,7 @@
   <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addUnitModalLabel">Tambah Kategori</h5>
+        <h5 class="modal-title" id="addUnitModalLabel">Tambah Unit</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -76,6 +73,10 @@
               <div class="form-group col-md">
                 <label for="name_unit">Nama</label>
                 <input type="text" class="form-control" name="name_unit" id="name_unit">
+              </div>
+              <div class="form-group col-md">
+                <label for="short_unit">Singkatan</label>
+                <input type="text" class="form-control" name="short_unit" id="short_unit">
               </div>
             </form>
           </div>
@@ -94,7 +95,7 @@
   <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editUnitModalLabel">Pembaharuan Data Kategori</h5>
+        <h5 class="modal-title" id="editUnitModalLabel">Pembaharuan Data Unit</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -107,6 +108,10 @@
                 <label for="name_edit_unit">Nama</label>
                 <input type="text" class="form-control" name="name_edit_unit" id="name_edit_unit">
                 <input type="hidden" name="id_unit_edit" id="id_unit_edit">
+              </div>
+              <div class="form-group col-md">
+                <label for="name_unit">Singkatan</label>
+                <input type="text" class="form-control" name="short_edit_unit" id="short_edit_unit">
               </div>
             </form>
           </div>

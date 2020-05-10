@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SIPENPANIN - MUHIKU</title>
+  <title>SIPENPANIN - <?= ucfirst($this->uri->segment(1)); ?></title>
 
   <!-- Custom fonts for this template-->
   <link href="<?php echo base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,13 +23,13 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="<?= $this->uri->segment(1) == 'transaction' ? "sidebar-toggled" : "" ?>">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?= $this->uri->segment(1) == 'transaction' ? "toggled" : "" ?>" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -50,7 +50,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="<?= site_url('transaction'); ?>" class="nav-link">
+        <a href="<?= site_url('transaction/sale'); ?>" class="nav-link">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Transaksi</span>
         </a>
@@ -74,6 +74,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="<?= site_url('product'); ?>">Daftar Produk</a>
             <a class="collapse-item" href="<?= site_url('category'); ?>">Kategori</a>
+            <a class="collapse-item" href="<?= site_url('unit'); ?>">Unit</a>
+            <a class="collapse-item" href="<?= site_url('supplier'); ?>">Supplier</a>
           </div>
         </div>
       </li>
@@ -341,11 +343,11 @@
   <script src="<?php echo base_url(); ?>assets/vendor/datatables/jquery.dataTables.js"></script>
   <script src="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.js"></script>
 
-  <script>
+  <!-- <script>
     $(document).ready(function() {
       $("#dataTable").DataTable();
     });
-  </script>
+  </script> -->
 
   <?php if (isset($scripts)) {
     echo $scripts;
